@@ -9,14 +9,13 @@ class ntp (
 
   package {
   'ntp':
-    ensure  => present;
+    ensure  => latest;
   'ntpdate':
-    ensure  => present,
+    ensure  =>latest;
   }
 
   file { '/etc/ntp.conf':
     owner   => root,
-    group   => admin,
     content => template('ntp/ntp.conf.erb'),
     require => Package['ntp'],
     notify  => Service['ntp'],
